@@ -1,0 +1,18 @@
+{
+    "configuracion":{
+        "urlFirmador": "http://172.191.183.15:8081/firmardocumento/",
+        "passwordPri":"Tr3mat2014",
+        "passwordToken":"Cont@2014"
+    },
+    "datosEmisor":{
+        "nit":"06140605141020",
+        "nrc":"",
+        "codActividad":"",
+        "nombre":""
+    },
+    "documentoRelacionado":{
+        "numeroDocumento":"",
+        "tipoDocumento":"",
+        "fechaDocumento":""
+    }
+}

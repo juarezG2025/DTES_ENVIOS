@@ -1,0 +1,106 @@
+{             
+  
+    "identificacion": {
+        "version": 1,
+        "ambiente": "00",
+        "tipoDte": "01",
+        "numeroControl": "DTE-01-00000000-700000191221544",
+        "codigoGeneracion": "3A522CBA-2E36-7970-BE43-9CC4E593FE52",
+        "tipoModelo": 1,
+        "tipoOperacion": 1,
+        "tipoContingencia": null,
+        "motivoContingencia": null,
+        "fecEmi": "2025-03-05",
+        "horEmi": "09:59:21",
+        "tipoMoneda": "USD"
+    },                       
+                                              
+    "emisor": {
+        "nit": "",
+        "nrc": "",
+        "nombre": "",
+        "descActividad": "Descripcion generica",
+        "nombreComercial": "",
+        "tipoEstablecimiento": "02",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "02",
+            "complemento": "Carr. Troncal del Norte Ex Edificio generico"
+        },
+        "telefono": "22222222",
+        "correo": "usuario@gmail.com",
+        "codEstableMH": "M001",
+        "codEstable": "M001",
+        "codPuntoVentaMH": "M001",
+        "codPuntoVenta": "P001",
+        "tipoItemExpor": 1,
+        "recintoFiscal": null,
+        "regimen": null
+    
+    },
+    "receptor": {     
+        "nombre": "RECEPTOR GENERICO",
+        "tipoDocumento": "03",
+        "numDocumento": "06143107971090",
+        "nombreComercial": "OPERADORA DEL SUR, SA DE CV",
+        "codPais": "9320",
+        "nombrePais": "Honduras",
+        "complemento": "Complemento",
+        "tipoPersona": 1,
+        "descActividad": "Venta en supermercados",
+        "telefono": "22017777",
+        "correo": "usuario@gmail.com"
+    },                  
+    "otrosDocumentos": [{
+        "codDocAsociado": 1,
+        "descDocumento": "string",
+        "detalleDocumento": "string",
+        "modoTransp": null,
+        "placaTrans": null,
+        "numConductor": null,
+        "nombreConductor": null
+    }],
+    "ventaTercero": null,
+    "cuerpoDocumento": [
+        {
+            "numItem": 2,
+            "codigo": "20",
+            "descripcion": "Descripcion",
+            "cantidad": 10,
+            "uniMedida": 1,
+            "precioUni": 10,
+            "montoDescu": 10,
+            "ventaGravada": 10,
+            "tributos": null,
+            "noGravado": 0           
+        }
+    ],                    
+    "resumen": {
+        "totalGravada": 10.00,
+        "descuento": 0,
+        "porcentajeDescuento": 0,
+        "totalDescu": 10,
+        "montoTotalOperacion": 10,
+        "totalNoGravado": 10,
+        "totalPagar": 10,
+        "totalLetras": "Total Letras",
+        "condicionOperacion": 1,
+        "pagos": [
+            {
+                "codigo": "10",
+                "montoPago": 10.00,
+                "referencia": null,
+                "periodo": null,
+                "plazo": null
+            }
+        ],
+        "codIncoterms": null,
+        "descIncoterms": null,
+        "observaciones": null,
+        "flete": null,
+        "numPagoElectronico": null,
+        "seguro": null
+
+    },
+    "apendice":null    
+}

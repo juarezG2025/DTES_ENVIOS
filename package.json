@@ -1,0 +1,33 @@
+{
+  "name": "dte_envios",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "commonjs",
+    "url": "git+https://github.com/juarezG2025/DTES_ENVIOS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juarezG2025/DTES_ENVIOS/issues"
+  },
+  "homepage": "https://github.com/juarezG2025/DTES_ENVIOS#readme",
+  "description": "",
+  "dependencies": {
+    "@types/node": "^22.14.0",
+    "axios": "^1.8.4",
+    "node-fetch": "^3.3.2",
+    "readline": "^1.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },  
+  "type": "commonjs",
+  "scripts": {
+    "start": "ts-node index.ts"
+  }
+
+}
