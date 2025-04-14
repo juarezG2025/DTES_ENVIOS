@@ -2,17 +2,19 @@
     "configuracion":{
         "urlFirmador": "http://172.191.183.15:8081/firmardocumento/",
         "passwordPri":"Tr3mat2014",
-        "passwordToken":"Cont@2014"
+        "passwordToken":"Cont@2014",
+        "urlMh":"https://apitest.dtes.mh.gob.sv/fesv/recepciondte",
+        "ambiente":"00"
     },
     "datosEmisor":{
         "nit":"06140605141020",
-        "nrc":"",
-        "codActividad":"",
-        "nombre":""
+        "nrc":"2324550",
+        "codActividad":"46599",
+        "nombre":"Media solutions"
     },
     "documentoRelacionado":{
-        "numeroDocumento":"",
-        "tipoDocumento":"",
-        "fechaDocumento":""
+        "numeroDocumento":"8DA908AD-AAE9-4E0B-B119-BA1AAC51047A",
+        "tipoDocumento":"03",
+        "fechaDocumento":"2025-04-07"
     }
 }

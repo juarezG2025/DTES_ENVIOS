@@ -2,37 +2,65 @@ import axios from 'axios';
 import { ResponseFirmador } from './models/responseFirmador';
 import { Configuracion } from './models/Configuracion';
 import { PeticionFirmador} from './models/PeticionFirmador';
+import * as repositorio from './repositorio';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import { json } from 'stream/consumers';
-
+import { v4 as uuidv4 } from 'uuid';
+import { url } from 'inspector';
+import { ERROR } from 'sqlite3';
 
 const readline = require('readline');
 var configuracion : Configuracion;
 
-async function realizarPeticion(url:string,tipo:string,datos:any):Promise<any> {
+const moment = require('moment');
+moment.locale('es');
+
+axios.interceptors.response.use(
+    response => response,
+    error => {
+      // Simplifica el error antes de que llegue a tu código
+      return Promise.reject({
+        status: error.response?.status,
+        data: error.response?.data,
+        message: error.message
+      });
+    }
+  );
+
+async function realizarPeticion(url:string,tipo:string,datos:any,header:any = null):Promise<any> {
      let response : Response|any;
+    
     switch (tipo) {
         case 'get':
-             response = await axios.get<Response>(url);
+            response = await axios.get<Response>(url);
             break;
         case 'post':
-            response = await axios.post<Response>(url,datos);
+            response = await axios.post<Response>(url,datos,header);
             break;
             
             default:
             break;
     }
- return response.data;  
+    return response.data;
 }
-
-async function seleccionarJson(tipo:string):Promise<JSON>{
+////////////////////////////////////////////////////////////////////////
+async function seleccionarJson(tipo:string):Promise<JSON|any>{
     let jsonSeleccionado :JSON;
 
     let nombreArchivo :string;    
     let ruta : string;
     let lectura:any;
     let contenido:any;
+    let iteracion = await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
+    let intecionN;
+
+
+    if(iteracion < 9){
+        intecionN = "0"+iteracion;
+    }else{
+        intecionN = iteracion;
+    }
 
     switch (tipo) {
         case "01":
@@ -46,8 +74,12 @@ async function seleccionarJson(tipo:string):Promise<JSON>{
             contenido.emisor.nombre = configuracion.datosEmisor.nombre;
             contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
             contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
-            
+            contenido.identificacion.codigoGeneracion = uuidv4().toUpperCase();
+            contenido.identificacion.numeroControl = "DTE-"+tipo+"-00000000-0000000000000"+intecionN;
+            contenido.identificacion.fecEmi = moment().format('YYYY-MM-DD');     
+            contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       ;
             jsonSeleccionado = contenido;
+
             break;
     
         default:
@@ -68,7 +100,7 @@ async function seleccionarJson(tipo:string):Promise<JSON>{
 
     return jsonSeleccionado;
 }
-
+//////////////////////////////////////////////////////////////////////////////////////////
 async function iniciarConfiguracion(){
     const ruta = path.join(__dirname, 'config.json');
     const lectura = await fs.readFile(ruta, 'utf-8');
@@ -79,7 +111,7 @@ const codigoAdmitidos :string[] = [
     "01",
     "03"    
 ];
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function firmarDte(tipoDte:string): Promise<ResponseFirmador>{
     
 
@@ -95,23 +127,126 @@ async function firmarDte(tipoDte:string): Promise<ResponseFirmador>{
 
     return r1;
  }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
     prompt: 'QRICOPECAUSITA> '  
 });
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function mostrarMenu() {
     console.log('-----------Que paso causita------------------');
-    console.log('Comandos: 1 -> Realizar pruebas');
-    console.log('Comandos: 2 -> realizar envios');
-    console.log('Comandos: 3 -> Salir');
+    console.log('Comandos: 1 -> Realizar pruebas al firmador');
+    console.log('Comandos: 2 -> Generar token');
+    console.log('Comandos: 3 -> Realizar prueba a al api del MH');
+    console.log('Comandos: 4 -> Realizar envio DTE en bucle');
+    console.log('Comandos: 5 -> Salir');
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+async function realizarEnvioMh(tipoDte:string,opciones:string|null){
+    try{
+        let jsonSeleccionado = await seleccionarJson(tipoDte);
+        const token = await obtenerToken();
+        const dteFirmado = await firmarDte(tipoDte);
+        const url = configuracion.configuracion.urlMh;
+        
+        const datos = {
+            "ambiente":configuracion.configuracion.ambiente,
+            "idEnvio":1,
+            "version":jsonSeleccionado.identificacion.version,
+            "tipoDte":tipoDte,
+            "documento":dteFirmado.body
+        };
+        
+        let resultado = await realizarPeticion(url,"post",datos,{
+            headers:{
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            }
+        });
 
-/*async function realizarPeticion(params:type) {
+
+        switch (opciones) {
+            case "descripcionMsg":
+                resultado = resultado.descripcionMsg;
+                break;
+            case "observaciones":
+                resultado = resultado.observaciones;
+                break;
+            case "estado":
+                resultado = resultado.estado;
+                break;
+            case "sello":
+                resultado = resultado.sello;
+                break;
+            default:
+                resultado = resultado;
+                break;
+        }
+
+        return resultado;
+
+    }catch(error:any){
+        let errorDevolver;
+            
+        switch (opciones) {
+            case "descripcionMsg":
+                errorDevolver = error.data.descripcionMsg;
+                break;
+            case "observaciones":
+                errorDevolver = error.data.observaciones;
+                break;
+            case "estado":
+                errorDevolver = error.data.estado;
+                break;
+            case "sello":
+                errorDevolver = error.data.sello;
+                break;
+            default:
+                errorDevolver = error.data;
+                break;
+        }
+        return errorDevolver;
+        
+        
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+async function realizarBucleMh(tipoDte:string, n:number,opciones:string|null = null) {
+    //Devolver el numero de control, mover correlativos desde aca y poner alguna cosa para que diga que esta cargando
+    let enviado = [];
+    for (let index = 0; index < n; index++) {
+        let respuestaMh = await realizarEnvioMh(tipoDte,opciones);
+        enviado.push(respuestaMh);
+    }
     
-}*/
+    return {
+        "array de enviados": enviado
+    }
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+async function obtenerToken():Promise<string>{
+
+    const datos = new FormData();
+    let token = await repositorio.obtenerToken(moment().format('YYYY-MM-DD'));
+
+    if(token == null || token == undefined){
+        datos.append('user',configuracion.datosEmisor.nit);
+        datos.append('pwd',configuracion.configuracion.passwordToken);
+        
+        const respuestaToken = await realizarPeticion(
+            'https://apitest.dtes.mh.gob.sv/seguridad/auth',
+            'post',
+            datos
+        )
+
+        token = respuestaToken.body.token;
+        repositorio.guardarRegistro(token,moment().format('YYYY-MM-DD'));
+    }
+
+    return token;
+}
+////////////////////////////////////////////////////////////////////////////////////
 async function main() {
     iniciarConfiguracion();
     mostrarMenu();
@@ -123,14 +258,22 @@ async function main() {
         let respuesta;
         switch (partidos[0]) {
             case "1":
+                //Pruebas al firmador
                 respuesta = await firmarDte(partidos[1]);
                 break;
-        
+
             case "2":
-                //let respuesta = await probarDte(input);
+                //Generar token
+                respuesta = await obtenerToken();
                 break;
+
             case "3":
-                process.exit(0);
+                //Probar enviador
+                respuesta = await realizarEnvioMh(partidos[1],partidos[2]);
+                break;
+            case "4":
+                //Realizar envio en bucle
+                respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
                 break;
         
             default:

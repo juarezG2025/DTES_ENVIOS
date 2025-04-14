@@ -2,7 +2,9 @@ export interface Configuracion{
     "configuracion":{
         "urlFirmador": "",
         "passwordPri":"",
-        "passwordToken":""
+        "passwordToken":"",
+        "urlMh":"",
+        "ambiente":""
     },
     "datosEmisor":{
         "nit":"",

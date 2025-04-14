@@ -1,106 +1,101 @@
-{             
-  
-    "identificacion": {
-        "version": 1,
-        "ambiente": "00",
-        "tipoDte": "01",
-        "numeroControl": "DTE-01-00000000-700000191221544",
-        "codigoGeneracion": "3A522CBA-2E36-7970-BE43-9CC4E593FE52",
-        "tipoModelo": 1,
-        "tipoOperacion": 1,
-        "tipoContingencia": null,
-        "motivoContingencia": null,
-        "fecEmi": "2025-03-05",
-        "horEmi": "09:59:21",
-        "tipoMoneda": "USD"
-    },                       
-                                              
-    "emisor": {
-        "nit": "",
-        "nrc": "",
-        "nombre": "",
-        "descActividad": "Descripcion generica",
-        "nombreComercial": "",
-        "tipoEstablecimiento": "02",
-        "direccion": {
-            "departamento": "06",
-            "municipio": "02",
-            "complemento": "Carr. Troncal del Norte Ex Edificio generico"
-        },
-        "telefono": "22222222",
-        "correo": "usuario@gmail.com",
-        "codEstableMH": "M001",
-        "codEstable": "M001",
-        "codPuntoVentaMH": "M001",
-        "codPuntoVenta": "P001",
-        "tipoItemExpor": 1,
-        "recintoFiscal": null,
-        "regimen": null
-    
+{
+  "identificacion": {
+    "version": 1,
+    "ambiente": "01",
+    "tipoDte": "01",
+    "numeroControl": "DTE-01-M001C001-000000000000008",
+    "codigoGeneracion": "B04C0DED-39C0-4249-9843-76F9FB970BB7",
+    "tipoModelo": 1,
+    "tipoOperacion": 1,
+    "tipoContingencia": null,
+    "motivoContin": null,
+    "fecEmi": "2025-04-10",
+    "horEmi": "10:01:23",
+    "tipoMoneda": "USD"
+  },
+  "documentoRelacionado": null,
+  "emisor": {
+    "nit": "06140801181013",
+    "nrc": "2661904",
+    "nombre": "CONTECSA",
+    "codActividad": "62020",
+    "descActividad": "Consultorías y gestión de servicios informáticos",
+    "nombreComercial": "CONSULTORES DE TECNOLOGIA S.A DE C.V",
+    "tipoEstablecimiento": "02",
+    "direccion": {
+      "departamento": "06",
+      "municipio": "23",
+      "complemento": "Paseo general Escalón #5550, Edificio Colabora nivel 6, oficina 2-4"
     },
-    "receptor": {     
-        "nombre": "RECEPTOR GENERICO",
-        "tipoDocumento": "03",
-        "numDocumento": "06143107971090",
-        "nombreComercial": "OPERADORA DEL SUR, SA DE CV",
-        "codPais": "9320",
-        "nombrePais": "Honduras",
-        "complemento": "Complemento",
-        "tipoPersona": 1,
-        "descActividad": "Venta en supermercados",
-        "telefono": "22017777",
-        "correo": "usuario@gmail.com"
-    },                  
-    "otrosDocumentos": [{
-        "codDocAsociado": 1,
-        "descDocumento": "string",
-        "detalleDocumento": "string",
-        "modoTransp": null,
-        "placaTrans": null,
-        "numConductor": null,
-        "nombreConductor": null
-    }],
-    "ventaTercero": null,
-    "cuerpoDocumento": [
-        {
-            "numItem": 2,
-            "codigo": "20",
-            "descripcion": "Descripcion",
-            "cantidad": 10,
-            "uniMedida": 1,
-            "precioUni": 10,
-            "montoDescu": 10,
-            "ventaGravada": 10,
-            "tributos": null,
-            "noGravado": 0           
-        }
-    ],                    
-    "resumen": {
-        "totalGravada": 10.00,
-        "descuento": 0,
-        "porcentajeDescuento": 0,
-        "totalDescu": 10,
-        "montoTotalOperacion": 10,
-        "totalNoGravado": 10,
-        "totalPagar": 10,
-        "totalLetras": "Total Letras",
-        "condicionOperacion": 1,
-        "pagos": [
-            {
-                "codigo": "10",
-                "montoPago": 10.00,
-                "referencia": null,
-                "periodo": null,
-                "plazo": null
-            }
-        ],
-        "codIncoterms": null,
-        "descIncoterms": null,
-        "observaciones": null,
-        "flete": null,
-        "numPagoElectronico": null,
-        "seguro": null
-
+    "telefono": "79880898",
+    "correo": "facturae@contecsalatam.com",
+    "codEstableMH": "M001",
+    "codEstable": "M001",
+    "codPuntoVentaMH": "C001",
+    "codPuntoVenta": "C001"
+  },
+  "receptor": {
+    "nrc": null,
+    "nombre": "MINISTERIO DE HACIENDA",
+    "codActividad": "84110",
+    "descActividad": "Actividades de la Administración Pública en general",
+    "direccion": {
+      "departamento": "06",
+      "municipio": "23",
+      "complemento": "MINISTERIO DE HACIENDA\nBOULEVARD DE LOS HEROE, #1231, SAN SALVADOR, SAN SALVADOR CENTRO\n\nSAN SALVADOR 06 \nEl Salvador"
     },
-    "apendice":null    
+    "telefono": "22443000",
+    "correo": "tesoreriadf.sede@mh.gob.sv",
+    "numDocumento": "06140101110032",
+    "tipoDocumento": "36"
+  },
+  "otrosDocumentos": null,
+  "ventaTercero": null,
+  "cuerpoDocumento": [
+    {
+      "numItem": 1,
+      "tipoItem": 2,
+      "numeroDocumento": null,
+      "cantidad": 1,
+      "codigo": "SerCon2P",
+      "codTributo": null,
+      "uniMedida": 59,
+      "descripcion": "SERVICIO DE SOPORTE Y ASISTENCIA TECNICA PARA INFRAESTRUCTURA DE SERVICIOS MICROSOFT DEL MINISTERIO DE HACIENDA PARA EL AÑO 2025",
+      "precioUni": 7298.67,
+      "montoDescu": 0,
+      "ventaNoSuj": 0,
+      "ventaExenta": 0,
+      "ventaGravada": 7298.67,
+      "tributos": null,
+      "psv": 0,
+      "noGravado": 0,
+      "ivaItem": 839.67
+    }
+  ],
+  "resumen": {
+    "totalNoSuj": 0,
+    "totalExenta": 0,
+    "totalGravada": 7298.67,
+    "subTotalVentas": 7298.67,
+    "descuNoSuj": 0,
+    "descuExenta": 0,
+    "descuGravada": 0,
+    "porcentajeDescuento": 0,
+    "totalDescu": 0,
+    "tributos": null,
+    "subTotal": 7298.67,
+    "ivaRete1": 64.59,
+    "reteRenta": 0,
+    "montoTotalOperacion": 7298.67,
+    "totalNoGravado": 0,
+    "totalPagar": 7234.08,
+    "totalLetras": "SIETE MIL DOSCIENTOS TREINTA Y CUATRO CON 8/100 DOLARES AMERICANOS",
+    "saldoFavor": 0,
+    "condicionOperacion": 2,
+    "pagos": null,
+    "numPagoElectronico": null,
+    "totalIva": 839.67
+  },
+  "extension": null,
+  "apendice": null
 }
