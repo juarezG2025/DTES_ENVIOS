@@ -66,16 +66,30 @@ npm install
     ``` 
 
 ## uso
+### Consideraciones importantes
 Para usar la aplicacion es necesario saber lo siguiente:
-1. La aplicacion no soporta espacios
-2. La aplicacion no tiene submenus, eso quiere decir que si usted ingresa 3, 4, no se abrira otro submenu, sino mas bien en la misma linea debera de ingresar todas las opciones necesarias
-3. Para darle mas instrucciones a la aplicacion, se debe de separar por un punto '.', es decir, una vez se ingresa un punto, el siguiente numero o comando que se ingrese, la aplicacion lo entendera como el siguiente comando a ejecutar, por ejemplo si se ingresa: 
+1. Formato de Entrada
+    1. La aplicación no admite espacios en los comandos
+    2. Todos los parámetros deben ingresarse en una sola línea sin saltos
+
+2. Estructura de Comandos
+    1. No existen submenús jerárquicos
+    2. Todos los parámetros deben especificarse en el comando inicial
+
+3. Sintaxis
+    1. Los parámetros adicionales se separan exclusivamente con puntos (.)
+    2. Cada segmento después de un punto representa un nuevo parámetro
+
+### Ejemplo practico
+Para ejecutar un envío masivo de documentos, utilice el siguiente formato:
+
 ```bash
 4.01.10.estado
 ```
-Se le esta indicando que ejecute una accion de tipo [bucle](#bucle) , seguido del tipo de DTE , seguido de la cantidad de iteraciones, y que aplique el filtro de 'estado' a la respuesta que se devuelva
+En este ejemplo, se le esta indicando que ejecute una accion de tipo [bucle](#bucle) , seguido del tipo de DTE , seguido de la cantidad de iteraciones, y que aplique el filtro de *estado* a la respuesta que se devuelva
 
 **Para inicia la aplicacion**
+
 Abre una terminal y ejecuta:
 ```bash
 # Muevete hasta la carpeta raiz del proyecto
@@ -157,15 +171,16 @@ npm start
 ## Tipos de documentos 
 *La aplicación soporta varios tipos de documentos definidos por el MH:*
 
-**-01: Factura de Consumidor Final**
-**-03: Nota de Crédito**
+1. **01: Factura de Consumidor Final**
+2. **03: Nota de Crédito**
 
 ## filtros
-*La aplicacion al realizar [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:
-    *descripcionMsg -> El mensaje de descripcion que devuelve el MH, aqui agrega una descripcion general del error
-    *observaciones -> Observaciones que devuelve el MH, aqui agrega los errores listados de haberlos
-    *estado -> Estado del DTE
-    *selloRecibido -> Sello del MH
+*Cuando se realiza [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:
+
+    * descripcionMsg -> El mensaje de descripcion que devuelve el MH, aqui agrega una descripcion general del error
+    * observaciones -> Observaciones que devuelve el MH, aqui agrega los errores listados de haberlos
+    * estado -> Estado del DTE
+    * selloRecibido -> Sello del MH
 
 ## Notas
 Verifique siempre que su firma digital esté configurada correctamente
