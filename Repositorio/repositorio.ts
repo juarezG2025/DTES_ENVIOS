@@ -4,7 +4,7 @@ import { open } from 'sqlite';
 // Abrir conexión a la base de datos
 export async function openDb() {
   return open({
-    filename: './DB/configsData.sqlite',
+    filename: './BD/configsData.sqlite',
     driver: sqlite3.Database
   });
 }
@@ -37,7 +37,6 @@ export async function guardarRegistro(token: string|any, fecha: string) {
 
 export async function obtenerToken(fecha: string) {
     const db = await openDb();
-    
     const result = await db.get(
       `SELECT token FROM config WHERE fecha = ?`,
       [fecha]

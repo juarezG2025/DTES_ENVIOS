@@ -50,7 +50,6 @@ async function realizarPeticion(url:string,tipo:string,datos:any,header:any = nu
 async function seleccionarJson(tipo:string):Promise<JSON|any>{
     let jsonSeleccionado :JSON;
 
-    let nombreArchivo :string;    
     let ruta : string;
     let lectura:any;
     let contenido:any;
@@ -62,9 +61,8 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
     }else{
         intecionN = iteracion;
     }
-    
-        nombreArchivo = "01-ConsumidorFinal";    
-        ruta = path.join(__dirname,"jsons_dtes", `${nombreArchivo}.json`);
+      
+        ruta = path.join(__dirname,"jsons_dtes", `${tipo}.json`);
         lectura = await fs.readFile(ruta, 'utf-8');
     
         contenido = JSON.parse(lectura);
