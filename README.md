@@ -46,7 +46,10 @@ npm install
 
         "urlMh":"https://apitest.dtes.mh.gob.sv/fesv/recepciondte", /*Url de la api del MH ha realizar la peticion, actualmente apunta a la API de TEST, SINO ES NECESARIO NO SE DEBE DE CAMBIAR*/
 
-        "ambiente":"00" //Ambiente al cual se quiere enviar el DTE, DE SER NECESARIO NO CAMBIARLO
+        "ambiente":"00", //Ambiente al cual se quiere enviar el DTE, DE SER NECESARIO NO CAMBIARLO,
+
+        "urlToken":"https://apitest.dtes.mh.gob.sv/seguridad/auth" //URL para generar e, token actualmente apunta a pruebas
+
     },
     "datosEmisor":{
         "nit":"000000000000", //NIT sin guiones del emisor
@@ -63,9 +66,18 @@ npm install
     ``` 
 
 ## uso
+Para usar la aplicacion es necesario saber lo siguiente:
+1. La aplicacion no soporta espacios
+2. La aplicacion no tiene submenus, eso quiere decir que si usted ingresa 3, 4, no se abrira otro submenu, sino mas bien en la misma linea debera de ingresar todas las opciones necesarias
+3. Para darle mas instrucciones a la aplicacion, se debe de separar por un punto '.', es decir, una vez se ingresa un punto, el siguiente numero o comando que se ingrese, la aplicacion lo entendera como el siguiente comando a ejecutar, por ejemplo si se ingresa: 
+```bash
+4.01.10.estado
+```
+Se le esta indicando que ejecute una accion de tipo [bucle](#bucle) , seguido del tipo de DTE , seguido de la cantidad de iteraciones, y que aplique el filtro de 'estado' a la respuesta que se devuelva
+
+**Para inicia la aplicacion**
 Abre una terminal y ejecuta:
 ```bash
-*EJECUTA*
 # Muevete hasta la carpeta raiz del proyecto
 cd ruta/a/tu/proyecto
 
@@ -85,37 +97,41 @@ npm start
 8. [Salir ](#salir)  
 
 #### pruebas Firmador
-*Se debe de escribir indicar el tipo de DTE a firmar luego de seleccionar la accion, sin espacios.*
+*Se debe de indicar el tipo de DTE a firmar,, sin espacios.*
+**EJEMPLO**
 ```bash
 #Se agrega 01 (factura de consumidor final) pero se puede agregar el numero que se necesite 
 1.01
 ```
 #### token
-*Se pueden generar los token de autenticacion de forma manual, sin embargo al realzar la primera peticion o prueba, el sistema genera automaticamente un token*
+*Se pueden generar los token de autenticacion de forma manual, sin embargo, al realzar la primera peticion o prueba, el sistema genera automaticamente un token*
 
 ```bash
 #Realiza la peticion al MH para el token  
 2
 ```
 #### relizar prueba mh
-*Realiza una peticion al MH, de igual forma se debe de indicar el tipo de DTE seguido de un punto.*
+*Envia un DTE al MH, de igual forma, se debe de indicar el tipo de DTE, y si desea, guardar el archivo .json en la carpeta **temp** del proyecto*
+**EJEMPLO**
 ```bash
 #Realiza la peticion al MH para enviar el DTE, se agrega .01 (consumidor final) para indicarle el tipo de DTE
 3.01
 ```
-*Tambien el sistema puede generar el archivo.json y alojarlo en la carpeta **temp**, lo guardar con el numero de control generardo para ese JSON*
+*Para generar el archivo .json: *
+**EJEMPLO**
 ```bash
-#Realiza la peticion al MH para enviar el DTE, se agrega .1  para indicar que queremos que genere el archivo .json ademas de realizar el envio
+#Realiza la peticion al MH para enviar el DTE, se agrega .1 luego del tipo de DTE para indicar que queremos que genere el archivo .json ademas de realizar el envio
 3.01.1
 ```
 #### bucle
-*Envia los DTE en bucle, para enviarlo el codigo a ingresar se estrucutra de la siguiente manera* 
-**Ejemplo: 4.01.10.estado (Enviar 10 Facturas de Consumidor Final, filtrar respuesta para mostrar solo estado)**
-Donde:
-**4** -> Es la opcion del menu 
-**01** -> Tipo de DTE a enviar (factura de consumidor final)
-**10** -> cantidad de iteraciones
-[**estado**](#filtros) -> Si solo se quiere que se muestre la respuestaa 'estado' que devuelve el MH util para debug y es opcional, se puede dejar en blanco este campo
+*Envia los DTE en bucle, el comando se estructura de la siguiente manera:*
+
+**Ejemplo**: *4.01.10.estado (Enviar 10 Facturas de Consumidor Final, filtrar respuesta para mostrar solo estado)*
+
+* **4** -> Es la opcion del menu 
+* **01** -> Tipo de DTE a enviar (factura de consumidor final)
+* **10** -> cantidad de iteraciones
+* [**estado**](#filtros) -> Si solo se quiere que se muestre la respuestaa 'estado' que devuelve el MH util para debug y es opcional, se puede dejar en blanco este campo
 
 ```bash
 #Enviar 10 Facturas de Consumidor Final, filtrar respuesta para mostrar solo estado)
@@ -145,14 +161,14 @@ Donde:
 **-03: Nota de Crédito**
 
 ## filtros
-*La aplicacion al realizar [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:*
+*La aplicacion al realizar [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:
     *descripcionMsg -> El mensaje de descripcion que devuelve el MH, aqui agrega una descripcion general del error
     *observaciones -> Observaciones que devuelve el MH, aqui agrega los errores listados de haberlos
     *estado -> Estado del DTE
     *selloRecibido -> Sello del MH
 
 ## Notas
-*Verifique siempre que su firma digital esté configurada correctamente
+Verifique siempre que su firma digital esté configurada correctamente
 
 Probar solo en **ambiente de pruebas** en caso de utilizarlo para produccion, se debe de consultar con el autor original 
 
