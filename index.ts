@@ -2,7 +2,7 @@ import axios from 'axios';
 import { ResponseFirmador } from './models/responseFirmador';
 import { Configuracion } from './models/Configuracion';
 import { PeticionFirmador} from './models/PeticionFirmador';
-import * as repositorio from './repositorio';
+import * as repositorio from './Repositorio/repositorio';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import { json } from 'stream/consumers';
@@ -79,10 +79,6 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
         contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       ;
         jsonSeleccionado = contenido;
         
-        const rutaGuardar = path.join(__dirname,"temp", `${contenido.identificacion.numeroControl}.json`);
-        const guardarJson = JSON.stringify(jsonSeleccionado,null,2);
-        await fs.writeFile(rutaGuardar, guardarJson, 'utf8');
-
     return jsonSeleccionado;
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -99,18 +95,22 @@ const codigoAdmitidos :string[] = [
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function firmarDte(tipoDte:string): Promise<ResponseFirmador>{
     
+    try {
+        var datos:PeticionFirmador;
+        var jsonSeleccionado = await seleccionarJson(tipoDte);
+        datos = {
+            nit : configuracion.datosEmisor.nit,
+            activo : true,
+            passwordPri : configuracion.configuracion.passwordPri,
+            dteJson :  jsonSeleccionado
+        };
+        var r1 = await realizarPeticion(configuracion.configuracion.urlFirmador,"post",datos) as ResponseFirmador;
 
-    var datos:PeticionFirmador;
-    var jsonSeleccionado = await seleccionarJson(tipoDte);
-    datos = {
-        nit : configuracion.datosEmisor.nit,
-        activo : true,
-        passwordPri : configuracion.configuracion.passwordPri,
-        dteJson :  jsonSeleccionado
-    };
-    var r1 = await realizarPeticion(configuracion.configuracion.urlFirmador,"post",datos) as ResponseFirmador;
-
-    return r1;
+        return r1;
+    } catch (error) {
+     return error as ResponseFirmador;   
+    }
+    
  }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const rl = readline.createInterface({
@@ -125,17 +125,25 @@ function mostrarMenu() {
     console.log('Comandos: 2 -> Generar token');
     console.log('Comandos: 3 -> Realizar prueba a al api del MH');
     console.log('Comandos: 4 -> Realizar envio DTE en bucle');
-    console.log('Comandos: 5 -> Limpiar carpeta temporal');
-    console.log('Comandos: 6 -> Salir');
+    console.log('Comandos: 5 -> Nuevo correlativo');
+    console.log('Comandos: 6 -> Ver correlativo actual');
+    console.log('Comandos: 7 -> Limpiar carpeta temporal');
+    console.log('Comandos: 8 -> Salir');
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-async function realizarEnvioMh(tipoDte:string,opciones:string|null){
+async function realizarEnvioMh(tipoDte:string,guardar:boolean = false){
     try{
         const token = await obtenerToken();
         let jsonSeleccionado = await seleccionarJson(tipoDte);
         const dteFirmado = await firmarDte(tipoDte);
         const url = configuracion.configuracion.urlMh;
         
+        if(guardar){   
+            const rutaGuardar = path.join(__dirname,"temp", `${jsonSeleccionado.identificacion.numeroControl}.json`);
+            const guardarJson = JSON.stringify(jsonSeleccionado,null,2);
+            await fs.writeFile(rutaGuardar, guardarJson, 'utf8');
+        }
+
         const datos = {
             "ambiente":configuracion.configuracion.ambiente,
             "idEnvio":1,
@@ -169,8 +177,9 @@ async function realizarBucleMh(tipoDte:string, n:number,opciones:string|null = n
     let recibidos = 0;
     let jsonRecibido;
     for (let index = 0; index < n; index++) {
-        let respuestaMh = await realizarEnvioMh(tipoDte,opciones);
+        let respuestaMh = await realizarEnvioMh(tipoDte,true);
         let jsonGenerado = await seleccionarJson(tipoDte);
+        
         let respuestaAgregar;
 
         switch (opciones) {
@@ -255,7 +264,6 @@ async function limpiarCarpeta() {
 }
 //////////////////////////////////////////////////////////////////////////////////
 async function main() {
-    iniciarConfiguracion();
     mostrarMenu();
     rl.prompt();
 
@@ -263,6 +271,7 @@ async function main() {
         const opcion = input.trim();
         const partidos = opcion.split('.');
         let respuesta;
+        iniciarConfiguracion();
         switch (partidos[0]) {
             case "1":
                 //Pruebas al firmador
@@ -281,7 +290,12 @@ async function main() {
             case "3":
                 //Probar enviador
                 //const spinnerE = ora('Generando Token...').start();
-                respuesta = await realizarEnvioMh(partidos[1],partidos[2]);
+                let imprimir = false;
+                if(partidos[2] && partidos[2] == "1"){
+                    imprimir = true;
+                }
+
+                respuesta = await realizarEnvioMh(partidos[1],imprimir);
                 //spinnerE.succeed();
                 break;
             case "4":
@@ -289,10 +303,25 @@ async function main() {
                 respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
                 break;
             case "5":
+                //Asignar nuevo correlativo
+                if(partidos[1]){
+                    await repositorio.editarItercion(parseInt(partidos[1]),moment().format('YYYY-MM-DD'));
+                    respuesta = "Nuevo correlativo asignado correctamente."
+                }else{
+                    respuesta = "Valor ingresado no valido luego del punto."
+                }
+                break;
+            case "6":
+                //Ver el correlativo en la bd
+                respuesta = await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
+                break;
+            case "7":
+                //Limpiar carpeta temporal
                 await limpiarCarpeta();
                 respuesta = 'Carpeta limpiada correctamente';
                 break;
-            case "6":
+                //Salir
+            case "8":
                 process.exit(0);
                 break;
             default:

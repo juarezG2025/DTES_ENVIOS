@@ -4,7 +4,7 @@ import { open } from 'sqlite';
 // Abrir conexión a la base de datos
 export async function openDb() {
   return open({
-    filename: 'configsData.sqlite',
+    filename: './DB/configsData.sqlite',
     driver: sqlite3.Database
   });
 }
