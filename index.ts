@@ -63,41 +63,25 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
         intecionN = iteracion;
     }
     
-    switch (tipo) {
-        case "01":
-            nombreArchivo = "01-ConsumidorFinal";    
-            ruta = path.join(__dirname,"jsons_dtes", `${nombreArchivo}.json`);
-            lectura = await fs.readFile(ruta, 'utf-8');
-        
-            contenido = JSON.parse(lectura);
-            contenido.emisor.nit = configuracion.datosEmisor.nit;
-            contenido.emisor.nrc = configuracion.datosEmisor.nrc;
-            contenido.emisor.nombre = configuracion.datosEmisor.nombre;
-            contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
-            contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
-            contenido.identificacion.codigoGeneracion = uuidv4().toUpperCase();
-            contenido.identificacion.numeroControl = "DTE-"+tipo+"-00000000-0000000000000"+intecionN;
-            contenido.identificacion.fecEmi = moment().format('YYYY-MM-DD');     
-            contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       ;
-            jsonSeleccionado = contenido;
-
-            break;
+        nombreArchivo = "01-ConsumidorFinal";    
+        ruta = path.join(__dirname,"jsons_dtes", `${nombreArchivo}.json`);
+        lectura = await fs.readFile(ruta, 'utf-8');
     
-        default:
-            nombreArchivo = "01-ConsumidorFinal";    
-            ruta = path.join(__dirname,"jsons_dtes", `${nombreArchivo}.json`);
-            lectura = await fs.readFile(ruta, 'utf-8');
+        contenido = JSON.parse(lectura);
+        contenido.emisor.nit = configuracion.datosEmisor.nit;
+        contenido.emisor.nrc = configuracion.datosEmisor.nrc;
+        contenido.emisor.nombre = configuracion.datosEmisor.nombre;
+        contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
+        contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
+        contenido.identificacion.codigoGeneracion = uuidv4().toUpperCase();
+        contenido.identificacion.numeroControl = "DTE-"+tipo+"-00000000-0000000000000"+intecionN;
+        contenido.identificacion.fecEmi = moment().format('YYYY-MM-DD');     
+        contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       ;
+        jsonSeleccionado = contenido;
         
-            contenido = JSON.parse(lectura);
-            contenido.emisor.nit = configuracion.datosEmisor.nit;
-            contenido.emisor.nrc = configuracion.datosEmisor.nrc;
-            contenido.emisor.nombre = configuracion.datosEmisor.nombre;
-            contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
-            contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
-            
-            jsonSeleccionado = contenido;
-            break;
-    }
+        const rutaGuardar = path.join(__dirname,"temp", `${contenido.identificacion.numeroControl}.json`);
+        const guardarJson = JSON.stringify(jsonSeleccionado,null,2);
+        await fs.writeFile(rutaGuardar, guardarJson, 'utf8');
 
     return jsonSeleccionado;
 }
@@ -141,7 +125,8 @@ function mostrarMenu() {
     console.log('Comandos: 2 -> Generar token');
     console.log('Comandos: 3 -> Realizar prueba a al api del MH');
     console.log('Comandos: 4 -> Realizar envio DTE en bucle');
-    console.log('Comandos: 5 -> Salir');
+    console.log('Comandos: 5 -> Limpiar carpeta temporal');
+    console.log('Comandos: 6 -> Salir');
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function realizarEnvioMh(tipoDte:string,opciones:string|null){
@@ -257,6 +242,18 @@ async function obtenerToken():Promise<string>{
     return token;
 }
 ////////////////////////////////////////////////////////////////////////////////////
+async function limpiarCarpeta() {
+    const carpeta = path.join(__dirname, "temp");
+
+    const archivos = await fs.readdir(carpeta);
+    
+    await Promise.all(
+        archivos.map(archivo => 
+            fs.unlink(path.join(carpeta, archivo))
+        )
+    );
+}
+//////////////////////////////////////////////////////////////////////////////////
 async function main() {
     iniciarConfiguracion();
     mostrarMenu();
@@ -292,9 +289,12 @@ async function main() {
                 respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
                 break;
             case "5":
+                await limpiarCarpeta();
+                respuesta = 'Carpeta limpiada correctamente';
+                break;
+            case "6":
                 process.exit(0);
                 break;
-        //TODO: Realizar pruebas con otro DTe guardar los json generados
             default:
                 console.log("Ingrese un comando valido.");
                 break;
