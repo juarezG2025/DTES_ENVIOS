@@ -17,14 +17,13 @@
 - Git (Opcional ya que se puede descargar el archivo .zip)
 - Un firmador configurado con el certificado dado por el MH
 - Credenciales dadas por el MH:
-    -passwordPri
-    -passwordToken (Clave para genera el token)
+    - passwordPri
+    - passwordToken (Clave para genera el token)
 ---
 ## Instalación  
 *Pasos para instalar dependencias y ejecutar el proyecto:*  
 
 ```bash
-*EJECUTA*
 # Clonar el repositorio
 git clone https://github.com/juarezG2025/DTES_ENVIOS.git
 
@@ -36,7 +35,8 @@ npm install
 ```
 ---
 ## configuracion  
-* En la ruta raiz en donde se ha descargado el proyecto, se debe de modificar el archivo **config.json** o en su defecto agregar uno nuevo, que contenga la siguiente estructura*
+*En la ruta raiz en donde se ha descargado el proyecto, se debe de modificar el archivo **config.json** o en su defecto agregar uno nuevo, que contenga la siguiente estructura* 
+
     ```json
     "configuracion":{ 
         "urlFirmador": "", //URL DEL FIRMADOR CONFIGURADO CON LAS CREDENCIALES
@@ -68,17 +68,18 @@ npm install
 ## uso
 ### Consideraciones importantes
 Para usar la aplicacion es necesario saber lo siguiente:
-1. Formato de Entrada
-    1. La aplicación no admite espacios en los comandos
-    2. Todos los parámetros deben ingresarse en una sola línea sin saltos
 
-2. Estructura de Comandos
-    1. No existen submenús jerárquicos
-    2. Todos los parámetros deben especificarse en el comando inicial
+* **Formato de Entrada**
+    * La aplicación no admite espacios en los comandos
+    * Todos los parámetros deben ingresarse en una sola línea sin saltos
 
-3. Sintaxis
-    1. Los parámetros adicionales se separan exclusivamente con puntos (.)
-    2. Cada segmento después de un punto representa un nuevo parámetro
+* **Estructura de Comandos**
+    * No existen submenús jerárquicos
+    * Todos los parámetros deben especificarse en el comando inicial
+
+* **Sintaxis**
+    * Los parámetros adicionales se separan exclusivamente con puntos (.)
+    * Cada segmento después de un punto representa un nuevo parámetro
 
 ### Ejemplo practico
 Para ejecutar un envío masivo de documentos, utilice el siguiente formato:
@@ -111,13 +112,15 @@ npm start
 8. [Salir ](#salir)  
 
 #### pruebas Firmador
-*Se debe de indicar el tipo de DTE a firmar,, sin espacios.*
+*Se debe de indicar el tipo de DTE a firmar, sin espacios.*
+
 **EJEMPLO**
 ```bash
 #Se agrega 01 (factura de consumidor final) pero se puede agregar el numero que se necesite 
 1.01
 ```
 #### token
+
 *Se pueden generar los token de autenticacion de forma manual, sin embargo, al realzar la primera peticion o prueba, el sistema genera automaticamente un token*
 
 ```bash
@@ -126,12 +129,13 @@ npm start
 ```
 #### relizar prueba mh
 *Envia un DTE al MH, de igual forma, se debe de indicar el tipo de DTE, y si desea, guardar el archivo .json en la carpeta **temp** del proyecto*
+
 **EJEMPLO**
 ```bash
 #Realiza la peticion al MH para enviar el DTE, se agrega .01 (consumidor final) para indicarle el tipo de DTE
 3.01
 ```
-*Para generar el archivo .json: *
+*Para generar el archivo .json:*
 **EJEMPLO**
 ```bash
 #Realiza la peticion al MH para enviar el DTE, se agrega .1 luego del tipo de DTE para indicar que queremos que genere el archivo .json ademas de realizar el envio
@@ -171,16 +175,16 @@ npm start
 ## Tipos de documentos 
 *La aplicación soporta varios tipos de documentos definidos por el MH:*
 
-1. **01: Factura de Consumidor Final**
-2. **03: Nota de Crédito**
+* **01: Factura de Consumidor Final**
+* **03: Nota de Crédito**
 
 ## filtros
-*Cuando se realiza [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:
+*Cuando se realiza [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:*
 
-    * descripcionMsg -> El mensaje de descripcion que devuelve el MH, aqui agrega una descripcion general del error
-    * observaciones -> Observaciones que devuelve el MH, aqui agrega los errores listados de haberlos
-    * estado -> Estado del DTE
-    * selloRecibido -> Sello del MH
+    * descripcionMsg = El mensaje de descripcion que devuelve el MH, aqui agrega una descripcion general del error
+    * observaciones = Observaciones que devuelve el MH, aqui agrega los errores listados de haberlos
+    * estado = Estado del DTE
+    * selloRecibido = Sello del MH
 
 ## Notas
 Verifique siempre que su firma digital esté configurada correctamente
