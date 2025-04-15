@@ -58,3 +58,14 @@ export async function obtenerIteracion(fecha: string):Promise<number> {
     await db.close();
     return result?.iteracion;
 }
+
+export async function editarItercion(iteracion :number,fecha:string) {
+  const db = await openDb();
+  
+  await db.run(
+    `UPDATE config SET iteracion = ? WHERE fecha = ?;`,
+    [iteracion,fecha]
+  );
+  
+  await db.close();
+}

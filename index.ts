@@ -9,7 +9,9 @@ import { json } from 'stream/consumers';
 import { v4 as uuidv4 } from 'uuid';
 import { url } from 'inspector';
 import { ERROR } from 'sqlite3';
-
+import cliProgress from 'cli-progress'; 
+import ora from 'ora'; 
+    
 const readline = require('readline');
 var configuracion : Configuracion;
 
@@ -55,13 +57,12 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
     let iteracion = await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
     let intecionN;
 
-
     if(iteracion < 9){
         intecionN = "0"+iteracion;
     }else{
         intecionN = iteracion;
     }
-
+    
     switch (tipo) {
         case "01":
             nombreArchivo = "01-ConsumidorFinal";    
@@ -84,7 +85,7 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
     
         default:
             nombreArchivo = "01-ConsumidorFinal";    
-            ruta = path.join(__dirname,"json_dtes", `${nombreArchivo}.json`);
+            ruta = path.join(__dirname,"jsons_dtes", `${nombreArchivo}.json`);
             lectura = await fs.readFile(ruta, 'utf-8');
         
             contenido = JSON.parse(lectura);
@@ -131,11 +132,11 @@ async function firmarDte(tipoDte:string): Promise<ResponseFirmador>{
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: 'QRICOPECAUSITA> '  
+    prompt: 'ENVIADTE> '  
 });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 function mostrarMenu() {
-    console.log('-----------Que paso causita------------------');
+    console.log('======================MENU DTES============================');
     console.log('Comandos: 1 -> Realizar pruebas al firmador');
     console.log('Comandos: 2 -> Generar token');
     console.log('Comandos: 3 -> Realizar prueba a al api del MH');
@@ -145,8 +146,8 @@ function mostrarMenu() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function realizarEnvioMh(tipoDte:string,opciones:string|null){
     try{
-        let jsonSeleccionado = await seleccionarJson(tipoDte);
         const token = await obtenerToken();
+        let jsonSeleccionado = await seleccionarJson(tipoDte);
         const dteFirmado = await firmarDte(tipoDte);
         const url = configuracion.configuracion.urlMh;
         
@@ -165,63 +166,72 @@ async function realizarEnvioMh(tipoDte:string,opciones:string|null){
             }
         });
 
-
-        switch (opciones) {
-            case "descripcionMsg":
-                resultado = resultado.descripcionMsg;
-                break;
-            case "observaciones":
-                resultado = resultado.observaciones;
-                break;
-            case "estado":
-                resultado = resultado.estado;
-                break;
-            case "sello":
-                resultado = resultado.sello;
-                break;
-            default:
-                resultado = resultado;
-                break;
-        }
-
         return resultado;
 
     }catch(error:any){
-        let errorDevolver;
-            
-        switch (opciones) {
-            case "descripcionMsg":
-                errorDevolver = error.data.descripcionMsg;
-                break;
-            case "observaciones":
-                errorDevolver = error.data.observaciones;
-                break;
-            case "estado":
-                errorDevolver = error.data.estado;
-                break;
-            case "sello":
-                errorDevolver = error.data.sello;
-                break;
-            default:
-                errorDevolver = error.data;
-                break;
-        }
-        return errorDevolver;
+        return error.data;
         
         
     }
 }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function realizarBucleMh(tipoDte:string, n:number,opciones:string|null = null) {
+    const progressBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+    progressBar.start(n, 0);
     //Devolver el numero de control, mover correlativos desde aca y poner alguna cosa para que diga que esta cargando
     let enviado = [];
+    let rechazados = 0;
+    let recibidos = 0;
+    let jsonRecibido;
     for (let index = 0; index < n; index++) {
         let respuestaMh = await realizarEnvioMh(tipoDte,opciones);
-        enviado.push(respuestaMh);
-    }
+        let jsonGenerado = await seleccionarJson(tipoDte);
+        let respuestaAgregar;
+
+        switch (opciones) {
+            case "descripcionMsg":
+                respuestaAgregar = respuestaMh.descripcionMsg;
+                break;
+            case "observaciones":
+                respuestaAgregar = respuestaMh.observaciones;
+                break;
+            case "estado":
+                respuestaAgregar = respuestaMh.estado;
+                break;
+            case "selloRecibido":
+                respuestaAgregar = respuestaMh.selloRecibido;
+                break;
+            default:
+                respuestaAgregar = respuestaMh;
+                break;
+        }
+
+        jsonRecibido = {
+            "numero de control": jsonGenerado.identificacion.numeroControl,
+            "Respuesta MH": respuestaAgregar
+        };
+
+        enviado.push(jsonRecibido);
+        
+        if (respuestaMh.selloRecibido) {
+            recibidos++;
+        }else{
+            rechazados++;
+        }
     
+
+        let iteracion =  await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
+        let nuevaIteracion = iteracion+1;
+        
+        await repositorio.editarItercion(nuevaIteracion,moment().format('YYYY-MM-DD'));
+
+        progressBar.increment();
+    }
+    progressBar.stop();
     return {
-        "array de enviados": enviado
+        "array de enviados": enviado,
+        "Cantidad de recibidos" : recibidos,
+        "Cantidad de rechazados" : rechazados
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -259,29 +269,38 @@ async function main() {
         switch (partidos[0]) {
             case "1":
                 //Pruebas al firmador
-                respuesta = await firmarDte(partidos[1]);
-                break;
+                    //const spinnerF = ora('Enviando documentos a MH...').start();
+                    respuesta = await firmarDte(partidos[1]);
+                    //spinnerF.stop();
+                    break;
 
             case "2":
                 //Generar token
+                //const spinnerT = ora('Generando Token...').start();
                 respuesta = await obtenerToken();
+                //spinnerT.succeed();
                 break;
 
             case "3":
                 //Probar enviador
+                //const spinnerE = ora('Generando Token...').start();
                 respuesta = await realizarEnvioMh(partidos[1],partidos[2]);
+                //spinnerE.succeed();
                 break;
             case "4":
                 //Realizar envio en bucle
                 respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
                 break;
-        
+            case "5":
+                process.exit(0);
+                break;
+        //TODO: Realizar pruebas con otro DTe guardar los json generados
             default:
                 console.log("Ingrese un comando valido.");
                 break;
         }
         
-        console.log("respuesta: ", respuesta);
+        console.log(JSON.stringify(respuesta, null, 2));
 
         mostrarMenu();
         rl.prompt();
