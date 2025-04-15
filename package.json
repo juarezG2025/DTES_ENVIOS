@@ -36,5 +36,7 @@
   "type": "commonjs",
   "devDependencies": {
     "@types/cli-progress": "^3.11.6"
-  }
+  },
+  "license": "MIT"
+
 }

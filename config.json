@@ -4,7 +4,8 @@
         "passwordPri":"Tr3mat2014",
         "passwordToken":"Cont@2014",
         "urlMh":"https://apitest.dtes.mh.gob.sv/fesv/recepciondte",
-        "ambiente":"00"
+        "ambiente":"00",
+        "urlToken":"https://apitest.dtes.mh.gob.sv/seguridad/auth"
     },
     "datosEmisor":{
         "nit":"06140605141020",

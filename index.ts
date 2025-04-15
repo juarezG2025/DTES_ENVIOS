@@ -239,7 +239,7 @@ async function obtenerToken():Promise<string>{
         datos.append('pwd',configuracion.configuracion.passwordToken);
         
         const respuestaToken = await realizarPeticion(
-            'https://apitest.dtes.mh.gob.sv/seguridad/auth',
+            configuracion.configuracion.urlToken,
             'post',
             datos
         )
@@ -304,9 +304,13 @@ async function main() {
                 break;
             case "5":
                 //Asignar nuevo correlativo
-                if(partidos[1]){
-                    await repositorio.editarItercion(parseInt(partidos[1]),moment().format('YYYY-MM-DD'));
-                    respuesta = "Nuevo correlativo asignado correctamente."
+                if(partidos[1] ){
+                    if(parseInt(partidos[1]) < 99){
+                        respuesta = "Valores mayores a 99 no se aceptan";
+                    }else{
+                        await repositorio.editarItercion(parseInt(partidos[1]),moment().format('YYYY-MM-DD'));
+                        respuesta = "Nuevo correlativo asignado correctamente."
+                    }
                 }else{
                     respuesta = "Valor ingresado no valido luego del punto."
                 }

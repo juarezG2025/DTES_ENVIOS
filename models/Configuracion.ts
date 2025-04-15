@@ -4,7 +4,8 @@ export interface Configuracion{
         "passwordPri":"",
         "passwordToken":"",
         "urlMh":"",
-        "ambiente":""
+        "ambiente":"",
+        "urlToken":""
     },
     "datosEmisor":{
         "nit":"",
