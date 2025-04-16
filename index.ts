@@ -66,15 +66,46 @@ async function seleccionarJson(tipo:string):Promise<JSON|any>{
         lectura = await fs.readFile(ruta, 'utf-8');
     
         contenido = JSON.parse(lectura);
-        contenido.emisor.nit = configuracion.datosEmisor.nit;
-        contenido.emisor.nrc = configuracion.datosEmisor.nrc;
-        contenido.emisor.nombre = configuracion.datosEmisor.nombre;
-        contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
-        contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
-        contenido.identificacion.codigoGeneracion = uuidv4().toUpperCase();
-        contenido.identificacion.numeroControl = "DTE-"+tipo+"-00000000-0000000000000"+intecionN;
-        contenido.identificacion.fecEmi = moment().format('YYYY-MM-DD');     
-        contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       ;
+        /*try
+        {*/
+            contenido.emisor.nit = configuracion.datosEmisor.nit;
+            contenido.emisor.nrc = configuracion.datosEmisor.nrc;
+            contenido.emisor.nombre = configuracion.datosEmisor.nombre;
+            contenido.emisor.codActividad = configuracion.datosEmisor.codActividad;
+
+            if(tipo != "14"){
+                contenido.emisor.nombreComercial = configuracion.datosEmisor.nombre;
+            }
+            
+            contenido.identificacion.codigoGeneracion = uuidv4().toUpperCase();
+            contenido.identificacion.numeroControl = "DTE-"+tipo+"-00000000-0000000000000"+intecionN;
+            contenido.identificacion.fecEmi = moment().format('YYYY-MM-DD');     
+            contenido.identificacion.ambiente = configuracion.configuracion.ambiente;       
+            
+            //console.log(JSON.stringify(contenido));
+
+            if(tipo != "09" && contenido.documentoRelacionado ){
+                contenido.documentoRelacionado[0].tipoDocumento = configuracion.documentoRelacionado.tipoDocumento;
+                contenido.documentoRelacionado[0].numeroDocumento = configuracion.documentoRelacionado.numeroDocumento;
+                contenido.documentoRelacionado[0].fechaEmision = configuracion.documentoRelacionado.fechaDocumento;
+            }
+            if(tipo != "09" && contenido.cuerpoDocumento){
+                if (contenido.cuerpoDocumento[0].fechaGeneracion) {
+                    contenido.cuerpoDocumento[0].fechaGeneracion = moment().format('YYYY-MM-DD');   
+                }
+                if (contenido.cuerpoDocumento[0].fechaEmision) {
+                    contenido.cuerpoDocumento[0].fechaEmision = moment().format('YYYY-MM-DD');   
+                }
+                if (contenido.cuerpoDocumento[0].numDocumento) {
+                    contenido.cuerpoDocumento[0].numDocumento = configuracion.documentoRelacionado.numeroDocumento;   
+                }
+                if (contenido.cuerpoDocumento[0].numeroDocumento) {
+                    contenido.cuerpoDocumento[0].numeroDocumento = configuracion.documentoRelacionado.numeroDocumento;
+                }
+            }
+        /*}catch(error){
+            console.log(error);
+        }*/
         jsonSeleccionado = contenido;
         
     return jsonSeleccionado;
@@ -303,7 +334,7 @@ async function main() {
             case "5":
                 //Asignar nuevo correlativo
                 if(partidos[1] ){
-                    if(parseInt(partidos[1]) < 99){
+                    if(parseInt(partidos[1]) > 99){
                         respuesta = "Valores mayores a 99 no se aceptan";
                     }else{
                         await repositorio.editarItercion(parseInt(partidos[1]),moment().format('YYYY-MM-DD'));

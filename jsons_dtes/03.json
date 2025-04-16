@@ -1,0 +1,108 @@
+{
+    "identificacion": {
+      "version": 3,
+      "ambiente": "01",
+      "tipoDte": "03",
+      "numeroControl": "DTE-03-M001C001-000000000000057",
+      "codigoGeneracion": "D9221002-372C-46BD-B5B4-5D0C28D304A3",
+      "tipoModelo": 1,
+      "tipoOperacion": 1,
+      "tipoContingencia": null,
+      "motivoContin": null,
+      "fecEmi": "2025-04-15",
+      "horEmi": "15:23:32",
+      "tipoMoneda": "USD"
+    },
+    "documentoRelacionado": null,
+    "emisor": {
+      "nit": "06140801181013",
+      "nrc": "2661904",
+      "nombre": "CONTECSA",
+      "codActividad": "62020",
+      "descActividad": "Consultorías y gestión de servicios informáticos",
+      "nombreComercial": "CONSULTORES DE TECNOLOGIA S.A DE C.V",
+      "tipoEstablecimiento": "02",
+      "direccion": {
+        "departamento": "06",
+        "municipio": "23",
+        "complemento": "Paseo general Escalón #5550, Edificio Colabora nivel 6, oficina 2-4"
+      },
+      "telefono": "79880898",
+      "correo": "facturae@contecsalatam.com",
+      "codEstableMH": "M001",
+      "codEstable": "M001",
+      "codPuntoVentaMH": "C001",
+      "codPuntoVenta": "C001"
+    },
+    "receptor": {
+      "nit": "06140107740025",
+      "nrc": "31577",
+      "nombre": "BANCO DE FOMENTO AGROPECUARIO",
+      "codActividad": "64190",
+      "descActividad": "Bancos",
+      "direccion": {
+        "departamento": "05",
+        "municipio": "28",
+        "complemento": "DISTRITO SANTA TECLA, KM 10 1/2, CARRETERA AL PUERTO DE LA LIBERTAD"
+      },
+      "telefono": "22410800",
+      "correo": "facturaelectronica@bfa.gob.sv",
+      "nombreComercial": "BANCO DE FOMENTO AGROPECUARIO"
+    },
+    "otrosDocumentos": null,
+    "ventaTercero": null,
+    "cuerpoDocumento": [
+      {
+        "numItem": 1,
+        "tipoItem": 2,
+        "numeroDocumento": null,
+        "cantidad": 1,
+        "codigo": "SerCon2P",
+        "codTributo": null,
+        "uniMedida": 59,
+        "descripcion": "SERVICIO DE MANTENIMIENTO DE EQUIPO DE COMPUTO",
+        "precioUni": 1647.49,
+        "montoDescu": 0,
+        "ventaNoSuj": 0,
+        "ventaExenta": 0,
+        "ventaGravada": 1647.49,
+        "tributos": [
+          "20"
+        ],
+        "psv": 0,
+        "noGravado": 0
+      }
+    ],
+    "resumen": {
+      "totalNoSuj": 0,
+      "totalExenta": 0,
+      "totalGravada": 1647.49,
+      "subTotalVentas": 1647.49,
+      "descuNoSuj": 0,
+      "descuExenta": 0,
+      "descuGravada": 0,
+      "porcentajeDescuento": 0,
+      "totalDescu": 0,
+      "tributos": [
+        {
+          "codigo": "20",
+          "descripcion": "Impuesto al Valor Agregado 13%",
+          "valor": 214.17
+        }
+      ],
+      "subTotal": 1647.49,
+      "ivaRete1": 16.48,
+      "reteRenta": 0,
+      "montoTotalOperacion": 1861.66,
+      "totalNoGravado": 0,
+      "totalPagar": 1845.19,
+      "totalLetras": "MIL OCHOCIENTOS CUARENTA Y CINCO CON 18/100 DOLARES AMERICANOS",
+      "saldoFavor": 0,
+      "condicionOperacion": 2,
+      "pagos": null,
+      "numPagoElectronico": null,
+      "ivaPerci1": 0
+    },
+    "extension": null,
+    "apendice": null
+  }

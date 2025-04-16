@@ -174,9 +174,16 @@ npm start
 
 ## Tipos de documentos 
 *La aplicación soporta varios tipos de documentos definidos por el MH:*
-
-* **01: Factura de Consumidor Final**
-* **03: Nota de Crédito**
+* 01 Factura
+* 03 Comprobante de crédito fiscal
+* 04 Nota de remisión
+* 05 Nota de crédito
+* 06 Nota de débito
+* 07 Comprobante de retención
+* 08 Comprobante de liquidación
+* 09 Documento contable de liquidación
+* 11 Facturas de exportación
+* 14 Factura de sujeto excluido
 
 ## filtros
 *Cuando se realiza [la accion 4 (envio en bucle)](#bucle) tiene la opcion de filtrar las respuesta, estos son los filtros que se puede aplicar:*

@@ -1,0 +1,121 @@
+{
+                
+    "identificacion": {
+                              "version": 3,
+                              "ambiente": "00",
+                              "tipoDte": "05",
+                              "numeroControl": "DTE-05-00090091-0000000000000{{i}}",
+                              "codigoGeneracion": "{{uuidv4}}",
+                              "tipoModelo": 1,
+                              "tipoOperacion": 1,
+                              "tipoContingencia": null,
+                              "motivoContin": null,
+                              "fecEmi": "{{fechaActual}}",
+                              "horEmi": "19:35:35",
+                              "tipoMoneda": "USD"
+                          },
+                          "documentoRelacionado": [{"tipoDocumento":"03",
+                            "tipoGeneracion":1,
+                             "numeroDocumento" :"{{documentoRelacionado}}",
+                              "fechaEmision":"{{fechaDocRelacionado}}"}],                        
+                                                  
+                          "emisor": {
+                              "nit": "{{NIT}}",
+                              "nrc": "{{nrc}}",
+                              "nombre": "{{nombreEmpresa}}",
+                              "codActividad": "{{codActividad}}",
+                              "descActividad": "Servicios n.c.p.",
+                              "nombreComercial": "VILLALTA DIAS, MARIA GRISELDA",
+                              "tipoEstablecimiento": "02",
+                              "direccion": {
+                                  "departamento": "12",
+                                  "municipio": "22",
+                                  "complemento": "POLIG. K-1 SDA. JARDIN 2. URB. EL MOLINO. #41 SAN MIGUEL (SV)SAN MIGUELSAN MIGUEL CENTRO El Salvador"
+                              },
+                              "telefono": "22017777",
+                              "correo": "atencioncliente@sistecsv.com"
+                            
+                          },
+                          "receptor": {                          
+                              "nit": "06143107971090",   
+                              "nrc":"1026518",
+                              "nombre": "OPERADORA DEL SUR, SA DE CV",
+                              "codActividad": "47111",
+                               "nombreComercial":null,
+                              "descActividad": "Venta en supermercados",                          
+                              "direccion": {
+                                  "departamento": "06",
+                                  "municipio": "14",
+                                  "complemento": "COL ESCALON E CLL NUEVA 1 Y CLL NUEVA 2, SS SAN SALVADOR"
+                              },
+                              "telefono": "22017777",
+                              "correo": "isaac_turcios@hotmail.com"
+                          },
+                          
+                          "ventaTercero": null,
+                          "cuerpoDocumento": 
+                          [
+                                              {
+                                                  "descripcion": "Producto X",
+                                                  "montoDescu": 0,
+                                                  "codigo": "8014",
+                                                  "ventaGravada": 55.00,
+                                                  "ventaNoSuj": 0,
+                                                  "ventaExenta": 0,
+                                                  "tributos":["20"],
+                                                  "numItem": 1,
+                                                  "tipoItem": 3,
+                                                  "codTributo": null,
+                                                  "uniMedida": 59,
+                                                  "numeroDocumento": "{{documentoRelacionado}}",
+                                                  "cantidad": 1,
+                                                  "precioUni": 55.00
+                                                
+                                                
+                                              }
+                                             
+                                              ],
+                            
+                            
+                  "resumen": {
+                      "totalNoSuj": 0,                    
+                      "descuNoSuj": 0,
+                      "totalLetras": "CINCUENTA Y CINCO CON 50/100 DOLARES AMERICANOS",
+                      "ivaRete1": 0,
+                      "subTotalVentas": 55,
+                      "subTotal": 55,
+                      "reteRenta": 0,
+                      "tributos": [
+                          {
+                              "codigo": "20",
+                              "descripcion": "Impuesto al Valor Agregado 13%",
+                              "valor": 7.15
+                          }
+                              ],
+                        "ivaPerci1":0,
+                      
+                      "descuExenta": 0,
+                      "totalDescu": 0,
+                    
+                      "descuGravada": 0,
+                    
+                      "totalGravada": 55,
+                      "montoTotalOperacion": 62.15,
+                     
+                     
+                      "totalExenta": 0,
+                      
+                      "condicionOperacion": 1
+                      
+                  },
+                          "extension": {
+                              "nombEntrega": "Mauricio Turcios",
+                              "docuEntrega": null,
+                              "nombRecibe": null,
+                              "docuRecibe": null,
+                              "observaciones": null
+                              
+                          },	
+                          
+                          "apendice":null
+                  }

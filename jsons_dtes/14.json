@@ -1,0 +1,75 @@
+{
+    "identificacion": {
+        "version": 1,
+        "ambiente": "00",
+        "tipoDte": "14",
+        "numeroControl": "DTE-14-M001C001-000000000000026",
+        "codigoGeneracion": "276C4E24-4505-4586-86BD-CE61FD804088",
+        "tipoModelo": 1,
+        "tipoOperacion": 1,
+        "tipoContingencia": null,
+        "motivoContin": null,
+        "fecEmi": "2025-04-08",
+        "horEmi": "11:47:59",
+        "tipoMoneda": "USD"
+        },
+    "emisor": {
+        "nit": "06142202171045",
+        "nrc": "2579151",
+        "nombre": "MEDIA SOLUTIONS",
+        "codActividad": "70200",
+        "descActividad": "Actividades de consultoría en gestión empresarial",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "23",
+            "complemento": "CALLE LOS CEDROS PSJ. SAN MATEO, COL- SAN MATEO, #9, SAN SALVADOR, SAN SALVADOR"
+        },
+        "telefono": "0000-0000",
+        "correo": "na@index.com",
+        "codEstableMH": "M001",
+        "codEstable": "M001",
+        "codPuntoVentaMH": "C001",
+        "codPuntoVenta": "COO01"
+    },
+    "cuerpoDocumento": [
+        {
+            "numItem": 1,
+            "tipoItem": 1,
+            "cantidad": 1.0,
+            "codigo": "c001",
+            "uniMedida": 59,
+            "descripcion": "[c001] Producto 01",
+            "precioUni": 100.0,
+            "montoDescu": 0.0,
+            "compra": 100.0
+        }
+    ],
+    "resumen": {
+        "totalDescu": 0.0,
+        "subTotal": 100.0,
+        "ivaRete1": -0.0,
+        "reteRenta": 0.0,
+        "totalPagar": 100.0,
+        "totalLetras": "CIEN CON 00/100 DOLARES AMERICANOS",
+        "condicionOperacion": 1,
+        "pagos": null,
+        "totalCompra": 100.0,
+        "descu": 0.0,
+        "observaciones": null
+    },
+    "sujetoExcluido": {
+        "nombre": "Mario Argote (Exportador)",
+        "codActividad": "10005",
+        "descActividad": "Otros",
+        "direccion": {
+            "departamento": "06",
+            "municipio": "23",
+            "complemento": "San Salvador"
+        },
+        "telefono": "00000000",
+        "correo": "na@index.com",
+        "tipoDocumento": "03",
+        "numDocumento": "AN123456"
+    },
+    "apendice": null
+}

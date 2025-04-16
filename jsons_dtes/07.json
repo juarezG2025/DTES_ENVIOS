@@ -1,0 +1,97 @@
+{
+                
+  
+    "identificacion": {
+                              "version": 1,
+                              "ambiente": "00",
+                              "tipoDte": "07",
+                              "numeroControl": "DTE-{{tipoDte}}-01180000-0000000000000{{i}}",
+                              "codigoGeneracion": "{{uuidv4}}",
+                              "tipoModelo": 1,
+                              "tipoOperacion": 1,
+                              "tipoContingencia": null,
+                              "motivoContin": null,
+                              "fecEmi": "{{fechaActual}}",
+                              "horEmi": "19:50:21",
+                              "tipoMoneda": "USD"
+                          },
+                                                 
+                          "emisor": {
+                          
+                              "nit": "{{NIT}}",
+                              "nrc": "{{nrc}}",
+                              "nombre": "{{nombreEmpresa}}",
+                              "codActividad": "{{codActividad}}",
+                              "descActividad": "Consultorías y gestión de servicios informáticos",
+                              "nombreComercial": "{{nombreEmpresa}}",
+                              "tipoEstablecimiento": "02",
+                              "direccion": {
+                                  "departamento": "12",
+                                  "municipio": "22",
+                                  "complemento": "POLIG. K-1 SDA. JARDIN 2. URB. EL MOLINO. #41 SAN MIGUEL (SV)SAN MIGUELSAN MIGUEL CENTRO El Salvador"
+                              },
+                              "telefono": "2301-7158",
+                              "correo": "atencioncliente@sistecsv.com",
+                              "puntoVentaMH": "M001",
+                              "codigoMH": "MH01",
+                              "codigo":null,
+                              "puntoVenta":"001"
+                          },
+                          "receptor": {       
+                              "tipoDocumento":"36",
+                              "numDocumento": "06143107971090",
+                              "nombre":"SISTEC GROUP S.A. de C.V.",
+                              "nrc":"1026518",
+                              "codActividad":"47111",
+                              "descActividad":"Venta en supermercados",
+                              "nombreComercial":null,
+                              "direccion": {
+                                  "departamento": "06",
+                                  "municipio": "14",
+                                  "complemento": "COL ESCALON E CLL NUEVA 1 Y CLL NUEVA 2, SS SAN SALVADOR"
+                              },
+                              "telefono":"22017777",
+                              "correo":"usuario@gmail.co"
+                              
+                          },
+  
+                          "cuerpoDocumento": [
+                                              {
+                                                  "numItem": 1,
+                                                  "tipoDte": "03",
+                                                  "tipoDoc": 1,
+                                                  "numDocumento": "{{documentoRelacionado}}",
+                                                  "fechaEmision": "2024-07-16",
+                                                  "montoSujetoGrav": 10,
+                                                  "codigoRetencionMH": "C4",
+                                                  "ivaRetenido": 1.30,
+                                                  "descripcion": "string"
+  
+                                              }
+                                             
+                                              ],
+  
+                          "resumen":{
+                             
+                              "totalSujetoRetencion": 10,
+                              "totalIVAretenido": 1.30,
+                              "totalIVAretenidoLetras": "UN DOLAR CON TREINTA CENTAVOS /100 DOLARES AMERICANOS"
+                              
+                          },                    
+                          
+                          "extension": {
+                              "nombEntrega": "Mauricio Turcios",
+                              "docuEntrega": null,
+                              "nombRecibe": null,
+                              "docuRecibe": null,
+                              "observaciones": null
+                              
+                          },	
+                          
+                          "apendice": [{
+                              "campo": "string",
+                              "etiqueta": "string",
+                              "valor": "string"
+                          }]
+                  }
+  

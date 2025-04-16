@@ -1,0 +1,78 @@
+{
+                
+    "identificacion": {
+     "version": 1,
+     "ambiente": "00",
+     "tipoDte": "09",
+     "numeroControl": "DTE-09-01180000-000000000000{{i}}",
+     "codigoGeneracion": "3A522CBA-9E39-4990-BE38-5674E599F1{{i}}",
+     "tipoModelo": 1,
+     "tipoOperacion": 1,
+     "fecEmi": "2025-03-31",
+     "horEmi": "19:40:16",
+     "tipoMoneda": "USD"
+   },
+   "emisor": {    
+        "nit": "06140801181013",
+        "nrc": "2661904",
+        "nombre": "CONTECSA",
+        "codActividad": "62020",
+        "descActividad": "Consultorías y gestión de servicios informáticos",
+        "nombreComercial": "CONTECSA S.A DE C.V",
+        "tipoEstablecimiento": "02",
+        "direccion": {
+            "departamento": "12",
+            "municipio": "22",
+            "complemento": "POLIG. K-1 SDA. JARDIN 2. URB. EL MOLINO. #41 SAN MIGUEL (SV)SAN MIGUELSAN MIGUEL CENTRO El Salvador"
+        },
+        "telefono": "2301-7158",
+        "correo": "atencioncliente@sistecsv.com",
+        "puntoVentaMH": "M001",
+        "codigoMH": "MH01",
+        "codigo":null,
+        "puntoVentaContri":"001"
+   },
+   "receptor": {
+     "nit": "06143107971090",
+     "nrc": "1026518",
+     "nombre": "Venta en supermercados",
+     "codActividad": "47111",
+     "descActividad": "otros",
+     "nombreComercial": "un gran cliente",
+     "tipoEstablecimiento": "02",
+     "direccion": {
+       "departamento": "10",
+       "municipio": "10",
+       "complemento": "calle"
+     },
+     "telefono": null,
+     "correo": "algo@gmail.com",
+     "codigoMH": null,
+     "puntoVentaMH": null
+   },
+   "cuerpoDocumento": {
+     "periodoLiquidacionFechaInicio": "2025-03-31",
+     "periodoLiquidacionFechaFin": "2025-04-01",
+     "valorOperaciones": 255.9,
+     "codLiquidacion": "C9",
+     "cantidadDoc": 1,
+     "descripSinPercepcion": "NO APLICA",
+     "subTotal": 255.9,
+     "iva": 29.44,
+     "montoSujetoPercepcion": 226.46,
+     "ivaPercibido": 4.53,
+     "comision": 5.89,
+     "porcentComision": 0,
+     "ivaComision": 0.77,
+     "liquidoApagar": 244.71,
+     "montoSinPercepcion": 0,
+     "totalLetras": "DOSCIENTOS CUARENTA Y CUATRO 71/100 DOLARES",
+     "observaciones": "NO APLICA"
+   },
+   "extension": {
+     "nombEntrega": "entrego",
+     "docuEntrega": "012345678-9",
+     "codEmpleado": null
+   },
+   "apendice": null
+ }
