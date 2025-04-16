@@ -106,10 +106,11 @@ npm start
 2. [Generar token de utenticacion](#token)  
 3. [Realizar prueba a la api MH](#relizar-prueba-mh)  
 4. [Realizar envio DTE en bluce](#bucle)  
-5. [Establecer nuevo número correlativo](#correlativo)  
-6. [Ver correlativo actual](#ver-correlativo)    
-7. [Limpiar la carpeta ](#limpiar-carpeta)  
-8. [Salir ](#salir)  
+5. [Realizar varios bucles](#varios-bucles)  
+6. [Establecer nuevo número correlativo](#correlativo)  
+7. [Ver correlativo actual](#ver-correlativo)    
+8. [Limpiar la carpeta ](#limpiar-carpeta)  
+9. [Salir ](#salir)  
 
 #### pruebas Firmador
 *Se debe de indicar el tipo de DTE a firmar, sin espacios.*
@@ -153,8 +154,25 @@ npm start
 
 ```bash
 #Enviar 10 Facturas de Consumidor Final, filtrar respuesta para mostrar solo estado)
-3.01.10.estado
+4.01.10.estado
 ```
+#### varios bucles
+*Realiza varios bucles, el comando se estructura de la siguiente manera:*
+**Ejemplo**: *5.01.10/03.10/04.10 (Enviar 10 Facturas de Consumidor Final,10 facturas de credito fiscal, y 10 notas de remision)*
+
+* **5** -> Es la opcion del menu 
+* **01** -> Tipo de DTE a enviar (factura de consumidor final)
+* **10** -> cantidad de iteraciones
+* **/**  -> Separa el comando para la nueva iteracion
+* **03** -> aqui ya no se indica el numero de menu, sino se indica el tipo de dte de una vez
+* **10** -> Cantidad de iteraciones
+* **/**  -> Separa el comando para la nueva iteracion 
+
+```bash
+#Enviar 10 Facturas de Consumidor Final, filtrar respuesta para mostrar solo estado)
+5.01.10/03.10/04.10
+```
+El resultado detallado de las iteraciones se guardan en: **/bucles**
 #### correlativo
 *Establecer nuevo número correlativo*
 

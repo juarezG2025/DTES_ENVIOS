@@ -154,10 +154,11 @@ function mostrarMenu() {
     console.log('Comandos: 2 -> Generar token');
     console.log('Comandos: 3 -> Realizar prueba a al api del MH');
     console.log('Comandos: 4 -> Realizar envio DTE en bucle');
-    console.log('Comandos: 5 -> Nuevo correlativo');
-    console.log('Comandos: 6 -> Ver correlativo actual');
-    console.log('Comandos: 7 -> Limpiar carpeta temporal');
-    console.log('Comandos: 8 -> Salir');
+    console.log('Comandos: 5 -> Realizar varios bucles ');
+    console.log('Comandos: 6 -> Nuevo correlativo');
+    console.log('Comandos: 7 -> Ver correlativo actual');
+    console.log('Comandos: 8 -> Limpiar carpeta temporal');
+    console.log('Comandos: 9 -> Salir');
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 async function realizarEnvioMh(tipoDte:string,guardar:boolean = false){
@@ -292,6 +293,42 @@ async function limpiarCarpeta() {
     );
 }
 //////////////////////////////////////////////////////////////////////////////////
+async function encolarDtes(datos:any[]) {
+    let estado = [];
+    let correlativoActual = await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
+
+    for (let index = 0; index < datos.length; index++) {
+        await repositorio.editarItercion(correlativoActual,moment().format('YYYY-MM-DD'));
+        const element = datos[index];
+        let tipo,iteracion,opciones;
+        if(index == 0){
+            tipo =  element[1];
+            iteracion =  element[2];
+            opciones =  element[3];
+        }else{
+            tipo =  element[0];
+            iteracion =  element[1];
+            opciones =  element[2];
+        }
+
+        let envio = await realizarBucleMh(tipo,iteracion,opciones);
+        
+        const rutaGuardar = path.join(__dirname,"bucles", `bucle-${tipo}_${moment().format('YYYY-MM-DD')}.json`);
+        const guardarJson = JSON.stringify(envio,null,2);
+        await fs.writeFile(rutaGuardar, guardarJson, 'utf8');
+
+
+        let estado1 = {
+            "tipo de DTE": tipo,
+            "Cantidad de enviados: ":envio['Cantidad de recibidos'],
+            "Cantidad de rechazados: ":envio['Cantidad de rechazados'],
+        }
+
+        estado.push(estado1);
+    }
+    return estado;
+}
+//////////////////////////////////////////////////////////////////////////////////
 async function main() {
     mostrarMenu();
     rl.prompt();
@@ -332,6 +369,17 @@ async function main() {
                 respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
                 break;
             case "5":
+                //Realizar envio en bucle
+                //respuesta = await realizarBucleMh(partidos[1],parseInt(partidos[2]),partidos[3]);
+                const bucles = opcion.split('/');
+                let enviar: string[][] = [];  // Array de arrays de strings
+                
+                bucles.forEach(element => {
+                    enviar.push(element.split('.'));
+                });
+                respuesta = await encolarDtes(enviar);
+                break;
+            case "6":
                 //Asignar nuevo correlativo
                 if(partidos[1] ){
                     if(parseInt(partidos[1]) > 99){
@@ -344,17 +392,17 @@ async function main() {
                     respuesta = "Valor ingresado no valido luego del punto."
                 }
                 break;
-            case "6":
+            case "7":
                 //Ver el correlativo en la bd
                 respuesta = await repositorio.obtenerIteracion(moment().format('YYYY-MM-DD'));
                 break;
-            case "7":
+            case "8":
                 //Limpiar carpeta temporal
                 await limpiarCarpeta();
                 respuesta = 'Carpeta limpiada correctamente';
                 break;
                 //Salir
-            case "8":
+            case "9":
                 process.exit(0);
                 break;
             default:

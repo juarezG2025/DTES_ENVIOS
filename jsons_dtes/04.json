@@ -63,7 +63,7 @@
         
         "numItem": 1,
         "tipoItem": 1,
-        "numeroDocumento": "",
+        "numeroDocumento": "1",
         "codigo": null,
         "codTributo": null,
         "descripcion":"string",

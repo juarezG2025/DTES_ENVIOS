@@ -1,0 +1,166 @@
+{
+  "array de enviados": [
+    {
+      "numero de control": "DTE-05-00000000-000000000000022",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "91050176-2B5A-4E1E-A565-61FF0C7C27AC",
+        "selloRecibido": "20256859D8FCEDE5407B90F1A2A6A389EAA9AD8H",
+        "fhProcesamiento": "16/04/2025 16:31:01",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000023",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": null,
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:31:03",
+        "clasificaMsg": "20",
+        "codigoMsg": "802",
+        "descripcionMsg": "Firma no válida",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000024",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "4F67392C-CD88-4B24-AD50-4774B847C6FD",
+        "selloRecibido": "202544FEEC288754422487D970421ABEFFFFPNDI",
+        "fhProcesamiento": "16/04/2025 16:31:05",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000025",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "DAA5F278-0722-4099-BBE0-A8C577CFF4EA",
+        "selloRecibido": "202587FBCFAA482144A7A44B1EE6281ACC5DVKHD",
+        "fhProcesamiento": "16/04/2025 16:31:07",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000026",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "D61D9A01-3409-4C50-A948-6A475232AD13",
+        "selloRecibido": "20255784EB33D891406281F4B08FDCD0510CQMYD",
+        "fhProcesamiento": "16/04/2025 16:31:09",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000027",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "22A46843-A6E1-4B90-B9D1-E4211E3ECB73",
+        "selloRecibido": "202578FC0E69285E43F289F82972A2CA8F09HLNV",
+        "fhProcesamiento": "16/04/2025 16:31:11",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000028",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "BB7770BE-B0ED-4D61-886F-36DDDA3727E5",
+        "selloRecibido": "2025EA91238D26664EFBA91F0FFC77DFD4C0TMK2",
+        "fhProcesamiento": "16/04/2025 16:31:13",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000029",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "2F1E22D7-7F1F-4A53-AF60-33604006FE04",
+        "selloRecibido": "2025F4420C162EA04B49AFEDD5B74F948229HBIB",
+        "fhProcesamiento": "16/04/2025 16:31:16",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000030",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "6DD1B66F-65CC-45D9-937B-8279555F7AED",
+        "selloRecibido": "20258737823FF6DC4601905D30037544ECE20MWB",
+        "fhProcesamiento": "16/04/2025 16:31:18",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-05-00000000-000000000000031",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "PROCESADO",
+        "codigoGeneracion": "877DE9D1-4B8A-43BB-878B-4CD5BF7F5D20",
+        "selloRecibido": "2025CF24EF651D92480BB8A83786D07C7590CY6A",
+        "fhProcesamiento": "16/04/2025 16:31:20",
+        "clasificaMsg": "10",
+        "codigoMsg": "001",
+        "descripcionMsg": "RECIBIDO",
+        "observaciones": []
+      }
+    }
+  ],
+  "Cantidad de recibidos": 9,
+  "Cantidad de rechazados": 1
+}

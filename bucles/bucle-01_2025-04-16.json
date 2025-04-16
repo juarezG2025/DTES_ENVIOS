@@ -1,0 +1,166 @@
+{
+  "array de enviados": [
+    {
+      "numero de control": "DTE-01-00000000-000000000000022",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "D4B9A0EC-FC9A-4412-9FF5-E5598FA48B53",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:29:53",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000023",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "CF0BCC75-0122-44DF-8786-8883AE2CCD63",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:29:55",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000024",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "28B93218-227F-40A9-B2FF-B4ECA86B0062",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:29:57",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000025",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "7932AF32-3644-43BD-8E0B-D3565A831940",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:29:59",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000026",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "91EABB74-AB5A-48BB-B179-DDBC99FE3C76",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:02",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000027",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "996AE2A8-40EF-4279-AC1E-B3D34842A48C",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:04",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000028",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "DF645418-A26B-4157-ACAC-0EDEB95F0C7D",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:06",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000029",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "E4489C55-3B29-4B1A-A65F-14880AC75770",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:08",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000030",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "BA7AAA36-3039-498A-86B3-2AC2C290909B",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:10",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    },
+    {
+      "numero de control": "DTE-01-00000000-000000000000031",
+      "Respuesta MH": {
+        "version": 2,
+        "ambiente": "00",
+        "versionApp": 2,
+        "estado": "RECHAZADO",
+        "codigoGeneracion": "D638D756-A6ED-406F-B533-6B719A9280FB",
+        "selloRecibido": null,
+        "fhProcesamiento": "16/04/2025 16:30:12",
+        "clasificaMsg": "11",
+        "codigoMsg": "004",
+        "descripcionMsg": "[identificacion.numeroControl] YA EXISTE UN REGISTRO CON ESE VALOR",
+        "observaciones": []
+      }
+    }
+  ],
+  "Cantidad de recibidos": 0,
+  "Cantidad de rechazados": 10
+}
