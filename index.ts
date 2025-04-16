@@ -11,7 +11,8 @@ import { url } from 'inspector';
 import { ERROR } from 'sqlite3';
 import cliProgress from 'cli-progress'; 
 import ora from 'ora'; 
-    
+import FormData from 'form-data';
+
 const readline = require('readline');
 var configuracion : Configuracion;
 
@@ -360,8 +361,8 @@ async function main() {
                 if(partidos[2] && partidos[2] == "1"){
                     imprimir = true;
                 }
-
-                respuesta = await realizarEnvioMh(partidos[1],imprimir);
+                
+                    respuesta = await realizarEnvioMh(partidos[1],imprimir);   
                 //spinnerE.succeed();
                 break;
             case "4":
@@ -420,4 +421,8 @@ async function main() {
     });    
 }
 
-main();
+try{
+    main();
+}catch(error){
+    console.log(error);
+}
