@@ -38,7 +38,11 @@ export async function guardarRegistro(token: string|any, fecha: string) {
 export async function obtenerToken(fecha: string) {
     const db = await openDb();
     const result = await db.get(
-      `SELECT token FROM config WHERE fecha = ?`,
+      `SELECT token 
+       FROM config 
+       WHERE fecha = ? 
+       ORDER BY id DESC 
+       LIMIT 1;`,
       [fecha]
     );
     

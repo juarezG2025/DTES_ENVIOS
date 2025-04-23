@@ -174,7 +174,7 @@ async function realizarEnvioMh(tipoDte:string,guardar:boolean = false){
             const guardarJson = JSON.stringify(jsonSeleccionado,null,2);
             await fs.writeFile(rutaGuardar, guardarJson, 'utf8');
         }
-
+        
         const datos = {
             "ambiente":configuracion.configuracion.ambiente,
             "idEnvio":1,
@@ -182,7 +182,7 @@ async function realizarEnvioMh(tipoDte:string,guardar:boolean = false){
             "tipoDte":tipoDte,
             "documento":dteFirmado.body
         };
-        
+
         let resultado = await realizarPeticion(url,"post",datos,{
             headers:{
                 'Content-Type': 'application/json',
@@ -281,6 +281,25 @@ async function obtenerToken():Promise<string>{
 
     return token;
 }
+///////////////////////////////////////////////////////////////////////////
+async function generarToken():Promise<string>{
+    //await iniciarConfiguracion();
+    const datos = new FormData();
+    let token ;
+    datos.append('user',configuracion.datosEmisor.nit);
+    datos.append('pwd',configuracion.configuracion.passwordToken);
+    
+    const respuestaToken = await realizarPeticion(
+        configuracion.configuracion.urlToken,
+        'post',
+        datos
+    )
+
+    token = respuestaToken.body.token;
+    repositorio.guardarRegistro(token,moment().format('YYYY-MM-DD'));
+
+    return token;
+}
 ////////////////////////////////////////////////////////////////////////////////////
 async function limpiarCarpeta() {
     const carpeta = path.join(__dirname, "temp");
@@ -338,7 +357,7 @@ async function main() {
         const opcion = input.trim();
         const partidos = opcion.split('.');
         let respuesta;
-        iniciarConfiguracion();
+        await iniciarConfiguracion();
         switch (partidos[0]) {
             case "1":
                 //Pruebas al firmador
@@ -350,7 +369,7 @@ async function main() {
             case "2":
                 //Generar token
                 //const spinnerT = ora('Generando Token...').start();
-                respuesta = await obtenerToken();
+                respuesta = await generarToken();
                 //spinnerT.succeed();
                 break;
 
